@@ -1,0 +1,37 @@
+from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+root.title("Лабораторная работа №9")
+root.geometry("400x200")
+frame = Frame(root)
+def entry_regist_and_login():
+    label = Label(text='Авторизизация / Регистрация', font='30')
+    label_login = Label(text='Введите логин')
+    entry_login = Entry()
+    label_password = Label(text='Введите пароль')
+    entry_password = Entry(show='*')
+    def login_and_password_error():
+        if (len(entry_login.get()) == 0 or len(entry_password.get()) == 0) or (
+                len(entry_login.get()) == 0 and len(entry_password.get()) == 0) or entry_login.get().count(' ')>0 or entry_password.get().count(' ')>0:
+            label_error = Label(text='Ошибка! Поля пустые', fg='#FF0000')
+            label_error.pack()
+        else:
+            root.destroy()
+            window = Tk()
+            window.title = ("Успешная авторизация / регистрация")
+            window.geometry("400x200")
+            label_success = Label(text='Вы успешно вошли / зарегистрировались!', fg='#66DD62')
+            label_success.pack(pady=80)
+            window = Tk()
+            window.title = ("Пустое окно")
+            window.geometry("600x600")
+    button = Button(text='Зарегистрироваться / войти', command=login_and_password_error)
+    label.pack()
+    label_login.pack()
+    entry_login.pack()
+    label_password.pack()
+    entry_password.pack()
+    button.pack()
+entry_regist_and_login()
+root.mainloop()
